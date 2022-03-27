@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <title>Hacker Ad</title>
+    <link href="style.css" rel="stylesheet" />
+</head>
+<style>
+    #main {
+        width: 1450px;
+        height: 1080px;
+        border: 1px solid black;
+        display: flex;
+    }
+
+    #main div {
+        -ms-flex: 1;
+        /* IE 10 */
+        flex: 1;
+    }
+
+    body {
+        background-color: black;
+    }
+</style>
+
+<body>
+    <h1 class="align title color-aqua">Best Online Games sites (FREE)</h1>
+    <button onclick="getData()">click test</button>
+    <div id="main">
+        <p>Hi I am </p>
+    </div>
+    <script>
+        function getData() {
+            fetch("http://localhost:3000/games", requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    result.map(x => {
+                        const main = document.getElementById('main')
+                        main.innerHTML += `<h1 class="title2 ">${x.short}</h1>
+                         <img src="${x.img}" alt="247" style="width:483px;height:100px;">
+                         <h1 class="title2 ">(Link: ${x.link})</h1>
+                         <button class="button1">Like</button>`
+                        main.innerHTML += `< div style = "background-color: ${x.color}" >
+                    `})
+                })
+                .catch(error => console.log('error', error));
+        }
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+
+
+
+
+        //                  <h1 class="title2 ">${x.short}</h1>
+        //                  <img src="${x.img}" alt="247" style="width:483px;height:100px;">
+        //                  <h1 class="title2 ">(Link: ${x.link})</h1>
+        //                  <button class="button1">Like</button>
+        //           </div>`)
+        //         })
+        //         .catch(error => console.log('error', error));
+
+        // }
+    </script>
+</body>
+
+</html>
