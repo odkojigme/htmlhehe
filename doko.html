@@ -29,40 +29,6 @@
     <div id="main">
         <p>Hi I am </p>
     </div>
-    <script>
-        function getData() {
-            fetch("http://localhost:3000/games", requestOptions)
-                .then(response => response.json())
-                .then(result => {
-                    result.map(x => {
-                        const main = document.getElementById('main')
-                        main.innerHTML += `<h1 class="title2 ">${x.short}</h1>
-                         <img src="${x.img}" alt="247" style="width:483px;height:100px;">
-                         <h1 class="title2 ">(Link: ${x.link})</h1>
-                         <button class="button1">Like</button>`
-                        main.innerHTML += `< div style = "background-color: ${x.color}" >
-                    `})
-                })
-                .catch(error => console.log('error', error));
-        }
-        var requestOptions = {
-            method: 'GET',
-            redirect: 'follow'
-        };
-
-
-
-
-        //                  <h1 class="title2 ">${x.short}</h1>
-        //                  <img src="${x.img}" alt="247" style="width:483px;height:100px;">
-        //                  <h1 class="title2 ">(Link: ${x.link})</h1>
-        //                  <button class="button1">Like</button>
-        //           </div>`)
-        //         })
-        //         .catch(error => console.log('error', error));
-
-        // }
-    </script>
 </body>
-
+<script src="./front.js"></script>
 </html>
