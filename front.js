@@ -1,4 +1,6 @@
 function getData() {
+      const main = document.getElementById('main');
+      main.innerHTML="";
       fetch("http://localhost:3000/games", requestOptions)
             .then(response => response.json())
             .then(result => {
@@ -26,13 +28,15 @@ var requestOptions = {
 };
 
 const like = async (count) => {
-      console.log(count);
       const option = {
             method: 'PUT',
             redirect: 'follow',
-            body: { count: count }
+            headers: {
+                  'Accept': 'application/json, text/plain, */*',
+                  'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({count:count})
       }
-      await fetch("http://localhost:3000/games", option)
-            .then(response => response.json())
-            .then(result => console.log(result));
+      await fetch("http://localhost:3000/games", option);
+      getData();
 }
