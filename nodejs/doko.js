@@ -17,17 +17,17 @@ var games = [
         short: '1. 247 Games. Best For: Classic games, card games and puzzles.',
         img: '247game.png',
         link: 'https://www.247games.com/',
-        like: '0',
+        like: 0,
         color: '#F6DF42',
-        count:2,
-    },{
+        count: 2,
+    }, {
         short: '2. Addicting Games. Best For: Single-player games.',
         img: 'addicting games.png',
         link: 'https://www.addictinggames.com/',
         like: 0,
         color: '#171717',
         count: 3,
-    },{
+    }, {
         short: '3. Agame. Best For: Games on multiple devices, single and multi-player online games',
         img: 'agame.png',
         link: 'https://www.agame.com/',
@@ -60,11 +60,20 @@ app.post('/games', function (req, res) {
 })
 
 app.put('/games', function (req, res) {
+    const { count } = req.body;
+    if (!count) {
+        res.send("aldaa");
+        return;
+    }
     console.log('/games [POST]')
-
-    games.push({
-        button: 'Test button'
+    const NewGames = games.map(item => {
+        if (item.count == count) {
+            item.like++;
+        }
+        return item;
     })
+    games = NewGames;
+    console.log(games);
     res.send('Success')
 })
 
